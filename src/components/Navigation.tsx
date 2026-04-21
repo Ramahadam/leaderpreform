@@ -32,7 +32,7 @@ const Navigation = () => {
             href="#"
             className="font-display font-black text-xl tracking-tight text-white hover:text-pink transition-colors duration-300"
           >
-            {navigationConfig.logo}<span className="text-pink">{navigationConfig.logoAccent}</span>
+            <img src={navigationConfig.logo} alt="Logo" className="h-56" />
           </a>
 
           {/* Desktop Navigation */}

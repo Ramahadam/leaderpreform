@@ -23,7 +23,7 @@ export interface NavigationConfig {
 }
 
 export const navigationConfig: NavigationConfig = {
-  logo: "LEADER",
+  logo: "/images/logo.jpeg",
   logoAccent: " PERFORM",
   navLinks: [
     { label: "Services", href: "#products" },

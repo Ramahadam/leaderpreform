@@ -19,6 +19,11 @@ const CustomCursor = () => {
     const moveCursor = (e: MouseEvent) => {
       setIsVisible(true);
       
+      // Update hovering state based on target
+      const target = e.target as HTMLElement;
+      const isInteractive = target.closest('a, button, [data-cursor-hover], input, select, textarea');
+      setIsHovering(!!isInteractive);
+      
       gsap.to(cursor, {
         x: e.clientX,
         y: e.clientY,
@@ -37,17 +42,6 @@ const CustomCursor = () => {
     const handleMouseEnter = () => setIsVisible(true);
     const handleMouseLeave = () => setIsVisible(false);
 
-    // Add hover detection for interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, [data-cursor-hover]');
-    
-    const handleElementEnter = () => setIsHovering(true);
-    const handleElementLeave = () => setIsHovering(false);
-
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', handleElementEnter);
-      el.addEventListener('mouseleave', handleElementLeave);
-    });
-
     window.addEventListener('mousemove', moveCursor);
     document.addEventListener('mouseenter', handleMouseEnter);
     document.addEventListener('mouseleave', handleMouseLeave);
@@ -56,10 +50,6 @@ const CustomCursor = () => {
       window.removeEventListener('mousemove', moveCursor);
       document.removeEventListener('mouseenter', handleMouseEnter);
       document.removeEventListener('mouseleave', handleMouseLeave);
-      interactiveElements.forEach(el => {
-        el.removeEventListener('mouseenter', handleElementEnter);
-        el.removeEventListener('mouseleave', handleElementLeave);
-      });
     };
   }, []);
 
